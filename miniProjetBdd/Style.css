@@ -1,0 +1,128 @@
+a {
+    text-decoration: none;
+    color:black;
+}
+
+body {
+    background-image:url("img/background.png");
+    text-align:center;
+}
+#menu, #menu ul
+{
+        padding : 0;
+        margin : auto;
+        list-style : none;
+        line-height : 28px;
+        text-align : center;
+}
+
+#menu
+{
+        font-weight : bold;
+        font-family : Arial;
+        font-size : 12px;
+        width:1200px;
+	margin:auto;
+
+}
+
+#menu a /* Contenu des listes */
+{
+        display : block;
+        padding : 5px;
+        background : #000;
+        color : #fff;
+        background-color:#2B2B2B;
+        text-decoration : none;
+        width : 150px;
+	font-size:18px;
+}
+
+#menu li
+{
+        float : left;
+        border-right : 2px solid #fff;
+        border-left : 2px solid #fff;
+}
+
+#menu a:hover{
+    background-color: #757575;
+}
+
+#mainContainer {
+    margin:auto;
+    width:1000px;
+    background-color: #A5A5A5;
+    margin-top:30px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    text-align:center;
+    -moz-box-shadow: 2px 2px 12px black;
+    -webkit-box-shadow: 2px 2px 12px black;
+    display:inline-block;
+}
+
+/******************
+***   Ville.php ***
+*******************/
+#form_ajout{
+    margin:20px;
+    width: 400px;
+    height: 28px;
+    background: White;
+    border: 2px solid DimGrey;
+    transition: height 1s;
+    -moz-transition: height 1s;
+    -webkit-transition: height 1s;
+    -o-transition: height 1s;
+    overflow: hidden;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    float:left;
+}
+
+#form_modif {
+    margin:20px;
+    width: 350px;
+    height: 0px;
+    background: White;
+    transition: height 1s;
+    -moz-transition: height 1s;
+    -webkit-transition: height 1s;
+    -o-transition: height 1s;
+    overflow: hidden;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    float:left;
+}
+
+
+#tableau{
+    float:left;
+    margin:20px;
+    margin-left:80px;
+    margin-bottom: 50px;
+}
+#table {
+    margin:auto;
+    border-width:3px;
+    border-style:solid;
+    border-color:black;
+    border-collapse: collapse;
+}
+
+
+#table td {
+    padding:5px;
+    border-width:1px;
+    border-style:solid;
+    border-color:black;
+    
+}
+
+
+
+#no {
+    width:10px;
+}
+
