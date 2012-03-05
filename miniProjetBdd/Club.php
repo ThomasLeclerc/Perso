@@ -47,7 +47,18 @@
                        <td id="error_nomClub"></td>
                    </tr>
                    <tr>
-                   <td><label for="nomVille">Ville : </label></td><td><input type="text" name="nomVille" id="nomVille" onKeyUp="check_field('nomVille')"></td>
+                   <td><label for="nomVille">Ville : </label></td><td><select  name="nomVille" id="nomVille" >
+                           <option selected="selected">sélectionner une ville</option>
+                           <?php
+                           $request="select nomVille from VILLE";
+                           $resultat=bdd_query($request);
+                           while($ligne=mysql_fetch_array($resultat)){
+                               echo "<option value=\"".$ligne[0]."\">".$ligne[0]."</option>\n";
+                           }
+
+                           ?>
+
+                       </select></td>
                    <td id="error_nomVille"></td>
                    </tr>
                    <tr>
@@ -71,13 +82,23 @@
                    </tr>
 
                    <tr>
-                       <td></td><td><input type="text" name="nomVilleModif" id="nomVilleModif" onkeyup="check_field('nomVilleModif')"</td>
+                       <td></td><td><select name="nomVilleModif" id="nomVilleModif">
+                               <option></option>
+                           <?php
+                           $request="select nomVille from VILLE";
+                           $resultat=bdd_query($request);
+                           while($ligne=mysql_fetch_array($resultat)){
+                               echo "<option value=\"".$ligne[0]."\">".$ligne[0]."</option>\n";
+                           }
+
+                           ?>
+                           </select></td>
                        <td id="error_nomVilleModif"></td>
                    </tr>
 
                    <tr>
                        <td></td>
-                       <td><input type="submit" value="Modifier" onClick="return check_two_fields('nomClubModif', 'nomVilleModif')">
+                       <td><input type="submit" value="Modifier" onClick="return check_field('nomClubModif')">
                          <input type="reset" value="Annuler" onClick="deroule2(0,2); field_ok('nomClubModif'); field_ok('nomVilleModif')"></td>
                    </tr>
                </table>

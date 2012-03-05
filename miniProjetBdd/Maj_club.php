@@ -31,19 +31,14 @@
         $res1=bdd_query($req1);
         $l=mysql_fetch_array($res1);
         $noVille=$l[0];
-
-        $req2 = "update CLUB set nomClub='".$nomCLub."', noVille=".$noVille." where noClub=".$id;
-        $res2 = bdd_query($req);
+        
+        $req2 = "update CLUB set nomClub='".$nomClub."', noVille='".$noVille."' where noClub=".$id;
+        var_dump($req2);
+        $res2 = bdd_query($req2);
     }
     print ("<script language = \"JavaScript\">");
     print ("location.href = 'Club.php';");
     print ("</script>");
 
 ?>
-<?php
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
-?>
