@@ -3,7 +3,6 @@
     require_once("header.php");
     require_once("bdd.php");
     print_header("Club", "Style.css", "Script.js");
-
 ?>
 <br/>
 <br/>

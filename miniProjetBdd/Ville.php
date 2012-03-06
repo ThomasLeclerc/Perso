@@ -22,7 +22,8 @@
     while($l=mysql_fetch_array($res)){
         echo"<tr>\n
                 <td>".$l[0]."</td><td class=\"nomVille\">".$l[1]."</td>
-                <td><a href=\"javascript:void(0)\" onClick=\"deroule2(100, 1, '".$l[1]."', '".$l[0]."')\"><img src=\"img/Edit.png\" title=\"modifier\"></a>
+                <td><a href=\"javascript:void(0)\" onClick=\"deroule2(100, 1, '".$l[1]."', '".$l[0]."');remplir_champ_modif('no', ".$l[0].");remplir_champ_modif('nomVilleModif', '".$l[1]."')\">
+                    <img src=\"img/Edit.png\" title=\"modifier\"></a>
 
                 <a href=\"javascript:if(confirm('confirmez-vous la suppression ?'))document.location.href='Maj_ville.php?action=2&id=".$l[0]."'\" ><img src=\"img/remove.png\" title=\"supprimer\"></a></td>\n";
 
