@@ -16,17 +16,29 @@
     echo"<div id=\"tableau\">\n
         <table id=\"table\">\n
             <tr>\n
-                <td><b>Identifiant</b></td><td class=\"nomAthlete\"><b>Nom</b></td><td><b>Club</b></td>\n
+                <td><b>Identifiant</b></td><td><b>Nom</b></td><td><b>Club</b></td><td><b>Spécialités</b></td>\n
              </tr>";
 
     while($l=mysql_fetch_array($res)){
         echo"<tr>\n
-                <td>".$l[0]."</td><td class=\"nomClub\">".$l[1]."</td>";
+                <td>".$l[0]."</td><td>".$l[1]."</td>";
+
+                //obtention du nom du club
                 $req2="select nomClub from CLUB c where c.noClub=".$l[2];
                 $res2=bdd_query($req2);
                 $ligne=mysql_fetch_array($res2);
-                echo"<td>".$ligne[0]."</td>
-                    <td><a href=\"javascript:void(0)\"
+                echo"<td>".$ligne[0]."</td>";
+
+                //obtention des spécialités
+                $req3="select d.libelleDiscipline from DISCIPLINE d, ESTSPECIALISTE e where
+                        e.noAthlete='".$l[0]."' and e.noDiscipline=d.noDiscipline";
+                $res3=bdd_query($req3);
+                echo "<td class=\"specialite\"> <ul>";
+                while($ligne2=mysql_fetch_array($res3)){
+                    echo "<li>".$ligne2[0]."</li>";
+                }
+                echo "</ul></td>";
+                echo "<td><a href=\"javascript:void(0)\"
                     onClick=\"deroule2(150, 1); remplir_champ_modif('no', ".$l[0].");remplir_champ_modif('nomAthleteModif', '".$l[1]."');
                     remplir_champ_modif('nomClubModif', '".$ligne[0]."')\">
                     <img src=\"img/Edit.png\" title=\"modifier\"></a>
