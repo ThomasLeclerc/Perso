@@ -13,7 +13,7 @@
     bdd_connect();
     $req="Select * from DISCIPLINE";
     $res=bdd_query($req);
-    echo"<div id=\"tableau\">\n
+    echo"
         <table id=\"table\">\n
             <tr>\n
                 <td><b>Identifiant</b></td><td class=\"libelleDiscipline\"><b>Libelle</b></td>\n
@@ -22,13 +22,11 @@
     while($l=mysql_fetch_array($res)){
         echo"<tr>\n
                 <td>".$l[0]."</td><td class=\"libelleDiscipline\">".$l[1]."</td>
-                <td><a href=\"javascript:void(0)\" onClick=\"deroule2(100, 1, '".$l[1]."', '".$l[0]."');remplir_champ_modif('no', ".$l[0].");remplir_champ_modif('libelleDisciplineModif', '".$l[1]."')\">
-                    <img src=\"img/Edit.png\" title=\"modifier\"></a>
-
-                <a href=\"javascript:if(confirm('confirmez-vous la suppression ?'))document.location.href='Maj_discipline.php?action=2&id=".$l[0]."'\" ><img src=\"img/remove.png\" title=\"supprimer\"></a></td>\n";
+                <td><input type=\"button\" value=\"modifier\" onClick=\"deroule2(100, 1, '".$l[1]."', '".$l[0]."');remplir_champ_modif('no', ".$l[0].");remplir_champ_modif('libelleDisciplineModif', '".$l[1]."')\">
+                <br/><input type=\"button\" value=\"supprimer\" onClick=if(confirm('confirmez-vous la suppression ?'))document.location.href='Maj_discipline.php?action=2&id=".$l[0]."'\"></td>\n";
 
     }
-    echo "</table></div>"
+    echo "</table>"
     ?>
 
     <div id="form_ajout">
@@ -67,7 +65,7 @@
 
 
         </form>
-    </div>
+    </div><br/>
 </div><br/>
 
 </body>

@@ -59,15 +59,14 @@ body {
     text-align:center;
     -moz-box-shadow: 2px 2px 12px black;
     -webkit-box-shadow: 2px 2px 12px black;
-    display:inline-block;
 }
 
 /******************
 ***   Ville.php ***
 *******************/
 #form_ajout{
-    margin:20px;
-    width: 400px;
+    margin:auto;
+    width: 350px;
     height: 28px;
     background: White;
     border: 2px solid DimGrey;
@@ -78,11 +77,11 @@ body {
     overflow: hidden;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-    float:left;
 }
 
+
 #form_modif {
-    margin:20px;
+    margin:auto;
     width: 350px;
     height: 0px;
     background: White;
@@ -93,18 +92,19 @@ body {
     overflow: hidden;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-    float:left;
+    
 }
 
-
-#tableau{
-    float:left;
-    margin:20px;
-    margin-left:80px;
-    margin-bottom: 50px;
+#form_modif select {
+    width:210px;
 }
+#form_ajout select {
+    width:210px;
+}
+
 #table {
     margin:auto;
+    margin-bottom:20px;
     border-width:3px;
     border-style:solid;
     border-color:black;
@@ -119,6 +119,10 @@ body {
     
 }
 
+#table td input{
+    width:100px;
+}
+
 #no {
     width:10px;
 }
@@ -126,3 +130,8 @@ body {
 .specialite {
     text-align: left;
 }
+
+.list_disc td{
+    text-align: left;
+}
+

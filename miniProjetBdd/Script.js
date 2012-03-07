@@ -29,6 +29,10 @@ function remplir_champ_modif(id, valeur){
     document.getElementById(id).value=valeur;
 }
 
+function select_checkbox(id){
+    document.getElementById(id).checked=true;
+}
+
 function check_field(id){
     var nom=document.getElementById(id).value;
     if(nom==""){

@@ -13,7 +13,7 @@
     bdd_connect();
     $req="Select * from ATHLETE";
     $res=bdd_query($req);
-    echo"<div id=\"tableau\">\n
+    echo"
         <table id=\"table\">\n
             <tr>\n
                 <td><b>Identifiant</b></td><td><b>Nom</b></td><td><b>Club</b></td><td><b>Spécialités</b></td>\n
@@ -38,19 +38,36 @@
                     echo "<li>".$ligne2[0]."</li>";
                 }
                 echo "</ul></td>";
-                echo "<td><a href=\"javascript:void(0)\"
-                    onClick=\"deroule2(150, 1); remplir_champ_modif('no', ".$l[0].");remplir_champ_modif('nomAthleteModif', '".$l[1]."');
-                    remplir_champ_modif('nomClubModif', '".$ligne[0]."')\">
-                    <img src=\"img/Edit.png\" title=\"modifier\"></a>
 
-                    <a href=\"javascript:if(confirm('confirmez-vous la suppression ?'))document.location.href='Maj_athlete.php?action=2&id=".$l[0]."'\" ><img src=\"img/remove.png\" title=\"supprimer\"></a></td>\n";
+                //récupération des id des spécialités dans $discipline_id[]
+                //pour pré-cocher dans le formulaire de modification
+                $req4="select d.noDiscipline from DISCIPLINE d, ESTSPECIALISTE e where
+                        e.noAthlete='".$l[0]."' and e.noDiscipline=d.noDiscipline";
+                $res4=bdd_query($req4);
+                $discipline_id=array();
+                
+                while($ligne3=mysql_fetch_array($res4)){
+                    $discipline_id[]=$ligne3[0];
+                    
+                }
+                echo "<td>
+                    <input type=\"button\" value=\"modifier\" onClick=\"deroule2(350, 1); remplir_champ_modif('no', ".$l[0].");remplir_champ_modif('nomAthleteModif', '".$l[1]."');
+                    remplir_champ_modif('nomClubModif', '".$ligne[0]."');";
+                    for($i=0; $i<sizeof($discipline_id); $i++){
+                        echo"select_checkbox('".$discipline_id[$i]."');";
+                    }
+                    echo "\">
+                    <br/>
+                    <input type=\"button\" value=\"supprimer\" onClick=\"javascript:if(confirm('confirmez-vous la suppression ?'))document.location.href='Maj_athlete.php?action=2&id=".$l[0]."'\" ></td>\n";
 
     }
-    echo "</table></div>"
+    echo "</table>"
     ?>
 
+
+    <!-- formulaire d'ajout d'un athlete-->
     <div id="form_ajout">
-        <input type="button" onClick="deroule(150, 1)" value="Ajouter un athlete"><br/>
+        <input type="button" onClick="deroule(350, 1)" value="Ajouter un athlete"><br/>
         <form method="POST" action="Maj_athlete.php?action=1" onSubmit="return confirm('confirmez-vous l\'ajout ?')">
                <table>
                    <tr>
@@ -72,6 +89,19 @@
                        </select></td>
                    <td id="error_nomClub"></td>
                    </tr>
+                   <tr class="list_disc">
+                       <?php
+                       echo "<td>Spécialité(s) : </td><td>";
+                       $req="select * from DISCIPLINE";
+                       $res=bdd_query($req);
+                       
+                       while($l=mysql_fetch_array($res)){
+                           echo "<input type=\"checkbox\" name=\"discipline[]\" value=\"".$l[0]."\">".$l[1]."<br/>";
+                           
+                       }
+
+                       ?>
+                       </td></tr>
                    <tr>
                        <td></td>
                        <td><input type="submit" value="Ajouter" onclick="return check_two_fields('nomAthlete', 'nomClub')">
@@ -82,9 +112,11 @@
         </form>
     </div><br/><br/>
 
+
+    <!-- formulaire de modification d'un athlete-->
     <div id="form_modif">
-        <br/>
-        modifier le Athlete
+
+        modifier l'athlete
         <form method="POST" action="Maj_athlete.php?action=3" onSubmit="return confirm('confirmez-vous la modification ?')">
                <table>
                    <tr>
@@ -93,7 +125,7 @@
                    </tr>
 
                    <tr>
-                       <td></td><td><select name="nomClubModif" id="nomClubModif">
+                       <td>Club : </td><td><select name="nomClubModif" id="nomClubModif">
                                <option></option>
                            <?php
                            $request="select nomClub from CLUB";
@@ -106,7 +138,19 @@
                            </select></td>
                        <td id="error_nomClubModif"></td>
                    </tr>
+                   <tr class="list_disc">
+                       <?php
+                       echo "<td>Spécialité(s) : </td><td>";
+                       $req="select * from DISCIPLINE";
+                       $res=bdd_query($req);
 
+                       while($l=mysql_fetch_array($res)){
+                           echo "<input type=\"checkbox\" name=\"discipline2[]\" value=\"".$l[0]."\" id=\"".$l[0]."\">".$l[1]."<br/>";
+
+                       }
+
+                       ?>
+                       </td></tr>
                    <tr>
                        <td></td>
                        <td><input type="submit" value="Modifier" onClick="return check_field('nomAthleteModif')">
@@ -116,7 +160,7 @@
 
 
         </form>
-    </div>
+    </div><br/>
 </div><br/>
 
 </body>

@@ -13,7 +13,7 @@
     bdd_connect();
     $req="Select * from CLUB";
     $res=bdd_query($req);
-    echo"<div id=\"tableau\">\n
+    echo"
         <table id=\"table\">\n
             <tr>\n
                 <td><b>Identifiant</b></td><td class=\"nomClub\"><b>Nom</b></td><td><b>Ville</b></td>\n
@@ -26,15 +26,13 @@
                 $res2=bdd_query($req2);
                 $ligne=mysql_fetch_array($res2);
                 echo"<td>".$ligne[0]."</td>
-                    <td><a href=\"javascript:void(0)\" 
-                    onClick=\"deroule2(150, 1); remplir_champ_modif('no', ".$l[0].");remplir_champ_modif('nomClubModif', '".$l[1]."');
+                    <td> <input type=\"button\" value=\"modifier\" onClick=\"deroule2(150, 1); remplir_champ_modif('no', ".$l[0].");remplir_champ_modif('nomClubModif', '".$l[1]."');
                     remplir_champ_modif('nomVilleModif', '".$ligne[0]."')\">
-                    <img src=\"img/Edit.png\" title=\"modifier\"></a>
-
-                    <a href=\"javascript:if(confirm('confirmez-vous la suppression ?'))document.location.href='Maj_club.php?action=2&id=".$l[0]."'\" ><img src=\"img/remove.png\" title=\"supprimer\"></a></td>\n";
+                    <br/>
+                    <input type=\"button\" value=\"supprimer\" onClick=\"javascript:if(confirm('confirmez-vous la suppression ?'))document.location.href='Maj_club.php?action=2&id=".$l[0]."'\" ></td>\n";
 
     }
-    echo "</table></div>"
+    echo "</table>"
     ?>
 
     <div id="form_ajout">
@@ -104,7 +102,7 @@
 
 
         </form>
-    </div>
+    </div><br/>
 </div><br/>
 
 </body>
