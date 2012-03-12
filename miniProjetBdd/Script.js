@@ -1,3 +1,12 @@
+
+function affiche_complet(){
+    var elements=document.getElementById('tableau').getElementByClassName('identifiant');
+    for(var i=0; i < elements.lenght; i++){
+        elements[i].style.display="table-cell";
+    }
+}
+
+
 function deroule(valeur, action)
     {
     switch (action){

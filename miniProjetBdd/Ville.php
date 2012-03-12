@@ -9,14 +9,15 @@
 
 <div id="mainContainer">
     <br/><h3>Table VILLE</h3>
+    
     <?php
     bdd_connect();
     $req="Select * from VILLE";
     $res=bdd_query($req);
     echo"
-        <table id=\"table\">\n
+        <table id=\"tableau\">\n
             <tr>\n
-                <td><b>Identifiant</b></td><td class=\"nomVille\"><b>Nom</b></td>\n
+                <td><b>ID</b></td><td class=\"nomVille\"><b>Nom</b></td>\n
              </tr>";
 
     while($l=mysql_fetch_array($res)){
@@ -53,7 +54,7 @@
         <form method="POST" action="Maj_ville.php?action=3" onSubmit="return confirm('confirmez-vous la modification ?')">
                <table>
                    <tr>
-                   <td><input type="text" name="no" id="no" readonly="readonly"></td><td><input type="text" name="nomVilleModif" id="nomVilleModif" onKeyUp="check_field_nom_ville('nomVilleModif')"></td>
+                   <td><input type="text" name="no" id="no" readonly="readonly"><label for="nomVilleModif">Nom Ville : </label></td><td><input type="text" name="nomVilleModif" id="nomVilleModif" onKeyUp="check_field_nom_ville('nomVilleModif')"></td>
                    <td id="error_nomVilleModif"></td>
                    </tr>
                    <tr>

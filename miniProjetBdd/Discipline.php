@@ -14,9 +14,9 @@
     $req="Select * from DISCIPLINE";
     $res=bdd_query($req);
     echo"
-        <table id=\"table\">\n
+        <table id=\"tableau\">\n
             <tr>\n
-                <td><b>Identifiant</b></td><td class=\"libelleDiscipline\"><b>Libelle</b></td>\n
+                <td><b>ID</b></td><td class=\"libelleDiscipline\"><b>Libelle</b></td>\n
              </tr>";
 
     while($l=mysql_fetch_array($res)){
@@ -53,7 +53,9 @@
         <form method="POST" action="Maj_discipline.php?action=3" onSubmit="return confirm('confirmez-vous la modification ?')">
                <table>
                    <tr>
-                   <td><input type="text" name="no" id="no" readonly="readonly"></td><td><input type="text" name="libelleDisciplineModif" id="libelleDisciplineModif" onKeyUp="check_field_nom_discipline('libelleDisciplineModif')"></td>
+                   <td><input type="text" name="no" id="no" readonly="readonly">
+                       <label for="libelleDisciplineModif">Nom Discipline : </label></td>
+                   <td><input type="text" name="libelleDisciplineModif" id="libelleDisciplineModif" onKeyUp="check_field_nom_discipline('libelleDisciplineModif')"></td>
                    <td id="error_libelleDisciplineModif"></td>
                    </tr>
                    <tr>

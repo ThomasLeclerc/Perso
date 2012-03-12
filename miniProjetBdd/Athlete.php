@@ -14,9 +14,9 @@
     $req="Select * from ATHLETE";
     $res=bdd_query($req);
     echo"
-        <table id=\"table\">\n
+        <table id=\"tableau\">\n
             <tr>\n
-                <td><b>Identifiant</b></td><td><b>Nom</b></td><td><b>Club</b></td><td><b>Spécialités</b></td>\n
+                <td><b>ID</b></td><td><b>Nom</b></td><td><b>Club</b></td><td><b>Spécialités</b></td>\n
              </tr>";
 
     while($l=mysql_fetch_array($res)){
@@ -71,7 +71,8 @@
         <form method="POST" action="Maj_athlete.php?action=1" onSubmit="return confirm('confirmez-vous l\'ajout ?')">
                <table>
                    <tr>
-                       <td><label for="nomClub">Nom : </label></td><td><input type="text" name="nomAthlete" id="nomAthlete" onkeyup="check_field('nomAthlete')"></td>
+                       <td><label for="nomAthlete">Nom : </label></td>
+                       <td><input type="text" name="nomAthlete" id="nomAthlete" onkeyup="check_field('nomAthlete')"></td>
                        <td id="error_nomAthlete"></td>
                    </tr>
                    <tr>
@@ -120,12 +121,14 @@
         <form method="POST" action="Maj_athlete.php?action=3" onSubmit="return confirm('confirmez-vous la modification ?')">
                <table>
                    <tr>
-                   <td><input type="text" name="no" id="no" readonly="readonly"></td><td><input type="text" name="nomAthleteModif" id="nomAthleteModif" onKeyUp="check_field('nomAthleteModif')"></td>
+                   <td><input type="text" name="no" id="no" readonly="readonly">
+                   <label for="nomAthleteModif">Nom : </label></td>
+                   <td><input type="text" name="nomAthleteModif" id="nomAthleteModif" onKeyUp="check_field('nomAthleteModif')"></td>
                    <td id="error_nomAthleteModif"></td>
                    </tr>
 
                    <tr>
-                       <td>Club : </td><td><select name="nomClubModif" id="nomClubModif">
+                       <td><label for="nomClubModif">Nom : </label></td><td><select name="nomClubModif" id="nomClubModif">
                                <option></option>
                            <?php
                            $request="select nomClub from CLUB";

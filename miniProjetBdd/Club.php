@@ -14,9 +14,9 @@
     $req="Select * from CLUB";
     $res=bdd_query($req);
     echo"
-        <table id=\"table\">\n
+        <table id=\"tableau\">\n
             <tr>\n
-                <td><b>Identifiant</b></td><td class=\"nomClub\"><b>Nom</b></td><td><b>Ville</b></td>\n
+                <td><b>ID</b></td><td class=\"nomClub\"><b>Nom</b></td><td><b>Ville</b></td>\n
              </tr>";
 
     while($l=mysql_fetch_array($res)){
@@ -74,12 +74,14 @@
         <form method="POST" action="Maj_club.php?action=3" onSubmit="return confirm('confirmez-vous la modification ?')">
                <table>
                    <tr>
-                   <td><input type="text" name="no" id="no" readonly="readonly"></td><td><input type="text" name="nomClubModif" id="nomClubModif" onKeyUp="check_field('nomClubModif')"></td>
+                   <td><input type="text" name="no" id="no" readonly="readonly">
+                   <label for="nomClubModif">Nom : </label></td>
+                   <td><input type="text" name="nomClubModif" id="nomClubModif" onKeyUp="check_field('nomClubModif')"></td>
                    <td id="error_nomClubModif"></td>
                    </tr>
 
                    <tr>
-                       <td></td><td><select name="nomVilleModif" id="nomVilleModif">
+                       <td><label for="nomVilleModif">Ville : </label></td><td><select name="nomVilleModif" id="nomVilleModif">
                                <option></option>
                            <?php
                            $request="select nomVille from VILLE";

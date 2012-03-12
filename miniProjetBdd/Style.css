@@ -66,7 +66,7 @@ body {
 *******************/
 #form_ajout{
     margin:auto;
-    width: 350px;
+    width: 400px;
     height: 28px;
     background: White;
     border: 2px solid DimGrey;
@@ -82,7 +82,7 @@ body {
 
 #form_modif {
     margin:auto;
-    width: 350px;
+    width: 400px;
     height: 0px;
     background: White;
     transition: height 1s;
@@ -102,7 +102,11 @@ body {
     width:210px;
 }
 
-#table {
+.identifiant {
+    display:none;
+}
+
+#tableau {
     margin:auto;
     margin-bottom:20px;
     border-width:3px;
@@ -111,7 +115,7 @@ body {
     border-collapse: collapse;
 }
 
-#table td {
+#tableau td {
     padding:5px;
     border-width:1px;
     border-style:solid;
@@ -119,12 +123,12 @@ body {
     
 }
 
-#table td input{
+#tableau td input{
     width:100px;
 }
 
 #no {
-    width:10px;
+    display:none;
 }
 
 .specialite {
