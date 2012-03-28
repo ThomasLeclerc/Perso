@@ -55,6 +55,18 @@ function check_field(id){
     }
 }
 
+function check_select(id){
+    var valeur=document.getElementById(id).value;
+    if(valeur==0){
+        document.getElementById("error_"+id).innerHTML="non sélectionné";
+        return false;
+    }
+    else {
+        field_ok(id);
+        return true;
+    }
+}
+
 function field_ok(id) {
 	document.getElementById(id).style.backgroundColor="#FEFEFE";
         document.getElementById("error_"+id).innerHTML="";

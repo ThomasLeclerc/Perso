@@ -101,40 +101,54 @@
 
     <!-- formulaire d'ajout d'un competition-->
     <div id="form_ajout">
-        <input type="button" onClick="deroule(150, 1)" value="Ajouter un competition"><br/>
-        <form method="POST" action="Maj_competition.php?action=1" onSubmit="return confirm('confirmez-vous l\'ajout ?')">
+        <input type="button" onClick="deroule(170, 1)" value="Ajouter un classement"><br/>
+        <form method="POST" action="Maj_classement.php?action=1" onSubmit="return confirm('confirmez-vous l\'ajout ?')">
                <table>
+                  
+                   <!--liste des compétitions pour ajout -->
                    <tr>
-                       <td><label for="nomCompetition">Nom : </label></td>
-                       <td><input type="text" name="nomCompetition" id="nomCompetition" onkeyup="check_field('nomCompetition')"></td>
+                       <?php
+                            $resultat=bdd_query("Select * from COMPETITION");
+                            echo "<td><label for=\"nomCompetition\">Competition : </label></td>
+                                    <td><select name=\"nomCompetition\" id=\"nomCompetition\">
+                                        <option value=0>Séletionner une compétition</option>";
+                            while($ligne=mysql_fetch_array($resultat)){
+                                echo "<option value=\"".$ligne[0]."\">".$ligne[1]."</option>";
+                            }
+
+                       ?>
+                       </select></td>
                        <td id="error_nomCompetition"></td>
                    </tr>
-
+                   
+                   <!--liste des athletes pour ajout -->
                    <tr>
-                       <td><label for="date">Date : </label></td><td><input type="text" name="date" id="date" onkeyup="check_field('date')"></td>
-                       <td id="error_date"></td>
+                       <?php
+                            $resultat=bdd_query("Select * from ATHLETE");
+                            echo "<td><label for=\"nomAthlete\">Athlete : </label></td>
+                                    <td><select name=\"nomAthlete\" id=\"nomAthlete\">
+                                        <option value=0>Séletionner un athlète</option>";
+                            while($ligne=mysql_fetch_array($resultat)){
+                                echo "<option value=\"".$ligne[0]."\">".$ligne[1]."</option>";
+                            }
+
+                       ?>
+                       </select></td>
+                       <td id="error_nomAthlete"></td>
                    </tr>
 
+
+
                    <tr>
-                   <td><label for="nomClub">Club : </label></td><td><select  name="nomClub" id="nomClub" >
-                           <option selected="selected">sélectionner une Club</option>
-                           <?php
-                           $request="select nomClub from CLUB";
-                           $resultat=bdd_query($request);
-                           while($ligne=mysql_fetch_array($resultat)){
-                               echo "<option value=\"".$ligne[0]."\">".$ligne[0]."</option>\n";
-                           }
-
-                           ?>
-
-                       </select></td>
-                   <td id="error_nomClub"></td>
+                   <td><label for="classement">classement : </label></td>
+                   <td><input type="text" name="classement" id="classement" onKeyUp="check_field('classement')"></td>
+                   <td id="error_classement"></td>
                    </tr>
 
                    <tr>
                        <td></td>
-                       <td><input type="submit" value="Ajouter" onclick="return check_two_fields('nomCompetition', 'date')">
-                           <input type="reset" value="Annuler" onClick="deroule(28,2); field_ok('nomCompetition');field_ok('date') "> </td>
+                       <td><input type="submit" value="Ajouter" onclick="return check_tree_fields('nomCompetition', 'nomAthlete', 'classement')">
+                           <input type="reset" value="Annuler" onClick="deroule(28,2); field_ok('nomCompetition');field_ok('nomAthlete'); field_ok('classement')"> </td>
                    </tr>
                </table>
 
