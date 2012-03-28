@@ -139,3 +139,25 @@ body {
     text-align: left;
 }
 
+
+#tab{
+    margin:auto;
+    width: 400px;
+    height: 150px;
+    background: White;
+    transition: height 1s;
+    -moz-transition: height 1s;
+    -webkit-transition: height 1s;
+    -o-transition: height 1s;
+    overflow: hidden;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    text-align: right;
+    padding-right:10px;
+
+}
+#tab select{
+    width:250px;
+}
+
+

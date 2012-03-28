@@ -84,5 +84,8 @@ function check_tree_fields(id1, id2, id3){
     return (check_field(id1)&&check_field(id2)&&check_field(id3));
 }
 
-
+function redirection_classement(){
+    var noCompet = document.getElementById("compet").value;
+    document.location.href="Classement2.php?noCompet="+noCompet;
+}
 
