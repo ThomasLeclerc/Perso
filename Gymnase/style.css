@@ -1,0 +1,19 @@
+body {
+	background-image:url("img/runner.png");
+	background-repeat:no-repeat;
+	background-position:40% 20px;
+}
+
+#infos_generales {
+	text-align:center;
+	width:150px;
+	float:left;
+}
+
+#main_container select {
+	margin-top:200px;
+}
+
+#info_abonne .libelle {
+	text-align:right;
+}
