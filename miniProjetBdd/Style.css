@@ -34,7 +34,7 @@ body {
         color : #fff;
         background-color:#2B2B2B;
         text-decoration : none;
-        width : 150px;
+        width : 135px;
 	font-size:18px;
 }
 
@@ -66,7 +66,7 @@ body {
 *******************/
 #form_ajout{
     margin:auto;
-    width: 440px;
+    width: 470px;
     height: 28px;
     background: White;
     border: 2px solid DimGrey;
@@ -82,7 +82,7 @@ body {
 
 #form_modif {
     margin:auto;
-    width: 440px;
+    width: 470px;
     height: 0px;
     background: White;
     transition: height 1s;
@@ -165,6 +165,10 @@ body {
 }
 #tab select{
     width:250px;
+}
+
+.hidden_fields {
+    display:none;
 }
 
 

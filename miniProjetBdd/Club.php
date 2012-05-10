@@ -45,7 +45,7 @@
                    </tr>
                    <tr>
                    <td><label for="nomVille">Ville : </label></td><td><select  name="nomVille" id="nomVille" >
-                           <option selected="selected">sélectionner une ville</option>
+                           <option selected="selected" value="0">sélectionner une ville</option>
                            <?php
                            $request="select nomVille from VILLE";
                            $resultat=bdd_query($request);
@@ -60,7 +60,7 @@
                    </tr>
                    <tr>
                        <td></td>
-                       <td><input type="submit" value="Ajouter" onclick="return check_two_fields('nomClub', 'nomVille')">
+                       <td><input type="submit" value="Ajouter" onclick="return (check_field('nomClub')&&check_select('nomVille'))">
                            <input type="reset" value="Annuler" onClick="deroule(28,2); field_ok('nomVille'); field_ok('nomClub')"> </td>
                    </tr>
                </table>
@@ -82,7 +82,7 @@
 
                    <tr>
                        <td><label for="nomVilleModif">Ville : </label></td><td><select name="nomVilleModif" id="nomVilleModif">
-                               <option></option>
+                               <option value="0"></option>
                            <?php
                            $request="select nomVille from VILLE";
                            $resultat=bdd_query($request);
@@ -97,7 +97,7 @@
 
                    <tr>
                        <td></td>
-                       <td><input type="submit" value="Modifier" onClick="return check_field('nomClubModif')">
+                       <td><input type="submit" value="Modifier" onClick="return (check_field('nomClubModif')&&check_select('nomVilleModif'))">
                          <input type="reset" value="Annuler" onClick="deroule2(0,2); field_ok('nomClubModif'); field_ok('nomVilleModif')"></td>
                    </tr>
                </table>

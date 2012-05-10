@@ -26,6 +26,7 @@ function print_header($title,$css="",$js="") {
     <li><a href=\"Discipline.php\">DISCIPLINE</a></li>\n
     <li><a href=\"Competition.php\">COMPETITION</a></li>\n
     <li><a href=\"Classement.php\">CLASSEMENTS</a></li>\n
+    <li><a href=\"Requetes.php\">REQUETES</a></li>\n
     </ul>\n
     </div>\n";
 }

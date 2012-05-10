@@ -15,7 +15,6 @@ function deroule(valeur, action)
         break;
     case 2:
         document.getElementById("form_ajout").style.height=valeur+"px";
-        document.getElementById("nomVille").value="";
         break;
     }
 }
@@ -99,5 +98,10 @@ function check_tree_fields(id1, id2, id3){
 function redirection_classement(){
     var noCompet = document.getElementById("compet").value;
     document.location.href="Classement2.php?noCompet="+noCompet;
+}
+
+function redirection_requetes(){
+    var noRequete=document.getElementById("request_list").value;
+    document.location.href="Requetes2.php?noRequete="+noRequete;
 }
 

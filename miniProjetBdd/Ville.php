@@ -35,12 +35,12 @@
         <form method="POST" action="Maj_ville.php?action=1" onSubmit="return confirm('confirmez-vous l\'ajout ?')">
                <table>
                     <tr>
-                   <td><label for="nomVille">Nom Ville : </label></td><td><input type="text" name="nomVille" id="nomVille" onKeyUp="check_field_nom_ville('nomVille')"></td>
+                   <td><label for="nomVille">Nom Ville : </label></td><td><input type="text" name="nomVille" id="nomVille" onKeyUp="check_field('nomVille')"></td>
                    <td id="error_nomVille"></td>
                    </tr>
                    <tr>
                        <td></td>
-                       <td><input type="submit" value="Ajouter" onclick="return check_field_nom_ville('nomVille')">
+                       <td><input type="submit" value="Ajouter" onclick="return check_field('nomVille')">
                            <input type="reset" value="Annuler" onClick="deroule(28,2); field_ok('nomVille')"> </td>
                    </tr>
                </table>
@@ -54,12 +54,12 @@
         <form method="POST" action="Maj_ville.php?action=3" onSubmit="return confirm('confirmez-vous la modification ?')">
                <table>
                    <tr>
-                   <td><input type="text" name="no" id="no" readonly="readonly"><label for="nomVilleModif">Nom Ville : </label></td><td><input type="text" name="nomVilleModif" id="nomVilleModif" onKeyUp="check_field_nom_ville('nomVilleModif')"></td>
+                   <td><input type="text" name="no" id="no" readonly="readonly"><label for="nomVilleModif">Nom Ville : </label></td><td><input type="text" name="nomVilleModif" id="nomVilleModif" onKeyUp="check_field('nomVilleModif')"></td>
                    <td id="error_nomVilleModif"></td>
                    </tr>
                    <tr>
                        <td></td>
-                       <td><input type="submit" value="Modifier" onClick="return check_field_nom_ville('nomVilleModif')">
+                       <td><input type="submit" value="Modifier" onClick="return check_field('nomVilleModif')">
                          <input type="reset" value="Annuler" onClick="deroule2(0,2); field_ok('nomVilleModif')"></td>
                    </tr>
                </table>

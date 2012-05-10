@@ -14,13 +14,13 @@
     $noCompet=$_GET["noCompet"];
 
     //onrécupère le nom de la compétition
-    $req="select * from COMPETITION where noCompet=".$noCompet;
+    $req="select nomCompet from COMPETITION where noCompet=".$noCompet;
     $res=bdd_query($req);
-    $l=mysql_fetch_array($res);
+    $nomCompet=mysql_fetch_array($res);
 
 
     
-    echo "<br/><h3>".$l[1]." - classements : </h3>";
+    echo "<br/><h3>".$nomCompet[0]." - classements : </h3>";
 
 
     //affichage des résultats dans un tableau
@@ -49,7 +49,7 @@
 
         //affichage de la première cellule et de la 1ère ligne
         //on doit le faire hors de la boucle pour le rowspan
-        $req2="select * from CLASSEMENT where noDiscipline=".$l[0]." and noCompet=".$noCompet;
+        $req2="select * from CLASSEMENT where noDiscipline=".$l[0]." and noCompet=".$noCompet." ORDER BY classement";
         $res2=bdd_query($req2);
         $ligne=mysql_fetch_array($res2);
             //on détermine le nom de l'athlete
@@ -60,17 +60,20 @@
         echo "<th rowspan=".$nbr[0]."> ".$libelleDiscipline[0]." </th>\n";
         echo "<td>".$nomAthlete[0]."</td><td>".$ligne[3]."</td>\n";
         echo "<td>
-             <input type=\"button\" value=\"modifier\" onClick=\"deroule2(150, 1);
-             remplir_champ_modif('no', ".$l[0].");
-             remplir_champ_modif('nomCompetitionModif', '".$l[1]."');
-             remplir_champ_modif('dateModif', '".$l[2]."');
-             remplir_champ_modif('nomClubModif', '".$ligne[0]."');";
-        for($i=0; $i<sizeof($discipline_id); $i++){
-            echo"select_checkbox('".$discipline_id[$i]."');";
-        }
+             <input type=\"button\" value=\"modifier\" onClick=\"deroule2(200, 1);
+             remplir_champ_modif('AthleteModif', ".$ligne[0].");
+             remplir_champ_modif('CompetitionModif', '".$nomCompet[0]."');
+             remplir_champ_modif('DisciplineModif', '".$ligne[2]."');
+             remplir_champ_modif('classementModif', '".$ligne[3]."');
+             remplir_champ_modif('AthleteModifOld', ".$ligne[0].");
+             remplir_champ_modif('CompetModifOld', '".$ligne[1]."');
+             remplir_champ_modif('DisciplineModifOld', '".$ligne[2]."');
+             remplir_champ_modif('classementModifOld', '".$ligne[3]."');";
+        
         echo "\">
              <br/>
-             <input type=\"button\" value=\"supprimer\" onClick=\"javascript:if(confirm('confirmez-vous la suppression ?'))document.location.href='Maj_competition.php?action=2&id=".$l[0]."'\" ></td></tr>\n";
+             <input type=\"button\" value=\"supprimer\"
+             onClick=\"javascript:if(confirm('confirmez-vous la suppression ?'))document.location.href='Maj_classement.php?action=2&noCompet=".$noCompet."&noAthlete=".$ligne[0]."&noDiscipline=".$ligne[2]."&classement=".$ligne[3]."'\" ></td></tr>\n";
 
 
         //on affiche les athletes et le classement
@@ -82,17 +85,20 @@
             echo "<tr><td>".$nomAthlete[0]."</td><td>".$ligne[3]."</td>\n";
 
              echo "<td>
-             <input type=\"button\" value=\"modifier\" onClick=\"deroule2(150, 1);
-             remplir_champ_modif('no', ".$l[0].");
-             remplir_champ_modif('nomCompetitionModif', '".$l[1]."');
-             remplir_champ_modif('dateModif', '".$l[2]."');
-             remplir_champ_modif('nomClubModif', '".$ligne[0]."');";
-             for($i=0; $i<sizeof($discipline_id); $i++){
-                 echo"select_checkbox('".$discipline_id[$i]."');";
-             }
+             <input type=\"button\" value=\"modifier\" onClick=\"deroule2(200, 1);
+             remplir_champ_modif('AthleteModif', ".$ligne[0].");
+             remplir_champ_modif('CompetitionModif', '".$nomCompet[0]."');
+             remplir_champ_modif('DisciplineModif', '".$ligne[2]."');
+             remplir_champ_modif('classementModif', '".$ligne[3]."');
+             remplir_champ_modif('AthleteModifOld', ".$ligne[0].");
+             remplir_champ_modif('CompetModifOld', '".$ligne[1]."');
+             remplir_champ_modif('DisciplineModifOld', '".$ligne[2]."');
+             remplir_champ_modif('classementModifOld', '".$ligne[3]."');";
+             
              echo "\">
              <br/>
-             <input type=\"button\" value=\"supprimer\" onClick=\"javascript:if(confirm('confirmez-vous la suppression ?'))document.location.href='Maj_competition.php?action=2&id=".$l[0]."'\" ></td></tr>\n";
+             <input type=\"button\" value=\"supprimer\"
+             onClick=\"javascript:if(confirm('confirmez-vous la suppression ?'))document.location.href='Maj_classement.php?action=2&noCompet=".$noCompet."&noAthlete=".$ligne[0]."&noDiscipline=".$ligne[2]."&classement=".$ligne[3]."'\" ></td></tr>\n";
         }    
     }
     echo "</table>"
@@ -101,32 +107,33 @@
 
     <!-- formulaire d'ajout d'un competition-->
     <div id="form_ajout">
-        <input type="button" onClick="deroule(170, 1)" value="Ajouter un classement"><br/>
-        <form method="POST" action="Maj_classement.php?action=1" onSubmit="return confirm('confirmez-vous l\'ajout ?')">
-               <table>
+        <input type="button" onClick="deroule(200, 1)" value="Ajouter un classement"><br/>
+        <?php
+            echo "<form method=\"POST\" action=\"Maj_classement.php?action=1&noCompet=".$noCompet."\" onSubmit=\"return confirm('confirmez-vous l\'ajout ?')\">";
+        ?>
+            <table>
                   
                    <!--liste des compétitions pour ajout -->
                    <tr>
                        <?php
-                            $resultat=bdd_query("Select * from COMPETITION");
-                            echo "<td><label for=\"nomCompetition\">Competition : </label></td>
-                                    <td><select name=\"nomCompetition\" id=\"nomCompetition\">
-                                        <option value=0>Séletionner une compétition</option>";
-                            while($ligne=mysql_fetch_array($resultat)){
-                                echo "<option value=\"".$ligne[0]."\">".$ligne[1]."</option>";
-                            }
+                            $requete="select nomCompet from COMPETITION where noCompet=".$noCompet;
+                            $resultat=bdd_query($requete);
+                            $nomCompet=mysql_fetch_array($resultat);
+                            echo "<td><label for=\"Competition\">Competition : </label></td>
+                                    <td><input type=\"text\" name=\"Competition\" id=\"Competition\" value=\"".$nomCompet[0]."\" readonly=\"readonly\">";
+                         
 
                        ?>
-                       </select></td>
-                       <td id="error_nomCompetition"></td>
+                       </td>
+                       <td id="error_Competition"></td>
                    </tr>
                    
                    <!--liste des athletes pour ajout -->
                    <tr>
                        <?php
                             $resultat=bdd_query("Select * from ATHLETE");
-                            echo "<td><label for=\"nomAthlete\">Athlete : </label></td>
-                                    <td><select name=\"nomAthlete\" id=\"nomAthlete\">
+                            echo "<td><label for=\"Athlete\">Athlete : </label></td>
+                                    <td><select name=\"Athlete\" id=\"Athlete\">
                                         <option value=0>Séletionner un athlète</option>";
                             while($ligne=mysql_fetch_array($resultat)){
                                 echo "<option value=\"".$ligne[0]."\">".$ligne[1]."</option>";
@@ -134,7 +141,23 @@
 
                        ?>
                        </select></td>
-                       <td id="error_nomAthlete"></td>
+                       <td id="error_Athlete"></td>
+                   </tr>
+
+                   <!--liste des discipline pour ajout -->
+                   <tr>
+                       <?php
+                            $resultat=bdd_query("Select * from DISCIPLINE");
+                            echo "<td><label for=\"Discipline\">Discipline : </label></td>
+                                    <td><select name=\"Discipline\" id=\"Discipline\">
+                                        <option value=0>Séletionner une discipline</option>";
+                            while($ligne=mysql_fetch_array($resultat)){
+                                echo "<option value=\"".$ligne[0]."\">".$ligne[1]."</option>";
+                            }
+
+                       ?>
+                       </select></td>
+                       <td id="error_Discipline"></td>
                    </tr>
 
 
@@ -147,8 +170,8 @@
 
                    <tr>
                        <td></td>
-                       <td><input type="submit" value="Ajouter" onclick="return check_tree_fields('nomCompetition', 'nomAthlete', 'classement')">
-                           <input type="reset" value="Annuler" onClick="deroule(28,2); field_ok('nomCompetition');field_ok('nomAthlete'); field_ok('classement')"> </td>
+                       <td><input type="submit" value="Ajouter" onclick="return (check_select('Athlete')&&check_select('Discipline')&&check_field('classement'))">
+                           <input type="reset" value="Annuler" onClick="deroule(28,2); field_ok('Competition');field_ok('Athlete'); field_ok('classement'); field_ok('Discipline')"> </td>
                    </tr>
                </table>
 
@@ -160,41 +183,77 @@
     <div id="form_modif">
 
         modifier la competition
-        <form method="POST" action="Maj_competition.php?action=3" onSubmit="return confirm('confirmez-vous la modification ?')">
-               <table>
-                   <tr>
-                   <td><input type="text" name="no" id="no" readonly="readonly">
-                   <label for="nomCompetitionModif">Nom : </label></td>
-                   <td><input type="text" name="nomCompetitionModif" id="nomCompetitionModif" onKeyUp="check_field('nomCompetitionModif')"></td>
-                   <td id="error_nomCompetitionModif"></td>
+        <?php
+            echo "<form method=\"POST\" action=\"Maj_classement.php?action=3&noCompet=".$noCompet."\" onSubmit=\"return confirm('confirmez-vous la modification ?')\">";
+        ?>
+            <table>
+
+                   <!--liste des compétitions pour modif -->
+                   <tr> 
+                       <input type="text" name="CompetModifOld" id="CompetModifOld" class="hidden_fields" readonly>
+                       <input type="text" name="AthleteModifOld" id="AthleteModifOld" class="hidden_fields" readonly>
+                       <input type="text" name="DisciplineModifOld" id="DisciplineModifOld" class="hidden_fields" readonly>
+                       <input type="text" name="classementModifOld" id="classementModifOld" class="hidden_fields" readonly>
+                       <?php
+                            $requete="select nomCompet from COMPETITION where noCompet=".$noCompet;
+                            $resultat=bdd_query($requete);
+                            $nomCompet=mysql_fetch_array($resultat);
+                            echo "<td><label for=\"CompetitionModif\">Competition : </label></td>
+                                    <td><input type=\"text\" name=\"CompetitionModif\" id=\"CompetitionModif\" value=\"".$nomCompet[0]."\" readonly=\"readonly\">";
+
+
+                       ?>
+                       </td>
+                       <td id="error_CompetitionModif"></td>
                    </tr>
 
+                   <!--liste des athletes pour modif -->
                    <tr>
-                       <td><label for="dateModif">Date : </label></td><td><input type="text" name="dateModif" id="dateModif" onkeyup="check_field('dateModif')"></td>
-                       <td id="error_dateModif"></td>
+                       <?php
+                            $resultat=bdd_query("Select * from ATHLETE");
+                            echo "<td><label for=\"AthleteModif\">Athlete : </label></td>
+                                    <td><select name=\"AthleteModif\" id=\"AthleteModif\">
+                                    <option value=\"0\"></option>";
+                            while($ligne=mysql_fetch_array($resultat)){
+                                echo "<option value=\"".$ligne[0]."\">".$ligne[1]."</option>";
+                            }
+
+                       ?>
+                       </select></td>
+                       <td id="error_AthleteModif"></td>
                    </tr>
 
+                   <!--liste des discipline pour modif -->
                    <tr>
-                       <td><label for="nomClubModif">Nom : </label></td><td><select name="nomClubModif" id="nomClubModif">
-                               <option></option>
-                           <?php
-                           $request="select nomClub from CLUB";
-                           $resultat=bdd_query($request);
-                           while($ligne=mysql_fetch_array($resultat)){
-                               echo "<option value=\"".$ligne[0]."\">".$ligne[0]."</option>\n";
-                           }
+                       <?php
+                            $resultat=bdd_query("Select * from DISCIPLINE");
+                            echo "<td><label for=\"DisciplineModif\">Discipline : </label></td>
+                                    <td><select name=\"DisciplineModif\" id=\"DisciplineModif\">
+                                    <option value=\"0\"></option>";
+                            while($ligne=mysql_fetch_array($resultat)){
+                                echo "<option value=\"".$ligne[0]."\">".$ligne[1]."</option>";
+                            }
 
-                           ?>
-                           </select></td>
-                       <td id="error_nomClubModif"></td>
+                       ?>
+                       </select></td>
+                       <td id="error_DisciplineModif"></td>
+                   </tr>
+
+
+
+                   <tr>
+                   <td><label for="classementModif">classement : </label></td>
+                   <td><input type="text" name="classementModif" id="classementModif" onKeyUp="check_field('classementModif')"></td>
+                   <td id="error_classementModif"></td>
                    </tr>
 
                    <tr>
                        <td></td>
-                       <td><input type="submit" value="Modifier" onClick="return check_field('nomCompetitionModif');check_field('dateModif')">
-                         <input type="reset" value="Annuler" onClick="deroule2(0,2); field_ok('nomCompetitionModif'); field_ok('dateModif')"></td>
+                       <td><input type="submit" value="Modifier" onclick="return (check_select('AthleteModif')&&check_select('DisciplineModif')&&check_field('classementModif'))">
+                           <input type="reset" value="Annuler" onClick="deroule2(0,2)"> </td>
                    </tr>
                </table>
+
 
 
         </form>

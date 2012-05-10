@@ -77,7 +77,7 @@
                    </tr>
                    <tr>
                    <td><label for="nomClub">Club : </label></td><td><select  name="nomClub" id="nomClub" >
-                           <option selected="selected">sélectionner une Club</option>
+                           <option selected="selected" value="0">sélectionner une Club</option>
                            <?php
                            $request="select nomClub from CLUB";
                            $resultat=bdd_query($request);
@@ -105,8 +105,8 @@
                        </td></tr>
                    <tr>
                        <td></td>
-                       <td><input type="submit" value="Ajouter" onclick="return check_two_fields('nomAthlete', 'nomClub')">
-                           <input type="reset" value="Annuler" onClick="deroule(28,2); field_ok('nomClub'); field_ok('nomAthlete')"> </td>
+                       <td><input type="submit" value="Ajouter" onclick="return (check_field('nomAthlete')&&check_select('nomClub'))">
+                           <input type="reset" value="Annuler" onClick="deroule(28,2); field_ok('nomClub'); field_ok('nomAthlete');field_ok('nomClub')"> </td>
                    </tr>
                </table>
 
@@ -129,7 +129,7 @@
 
                    <tr>
                        <td><label for="nomClubModif">Nom : </label></td><td><select name="nomClubModif" id="nomClubModif">
-                               <option></option>
+                               <option value="0"></option>
                            <?php
                            $request="select nomClub from CLUB";
                            $resultat=bdd_query($request);
@@ -156,8 +156,8 @@
                        </td></tr>
                    <tr>
                        <td></td>
-                       <td><input type="submit" value="Modifier" onClick="return check_field('nomAthleteModif')">
-                         <input type="reset" value="Annuler" onClick="deroule2(0,2); field_ok('nomAthleteModif'); field_ok('nomClubModif')"></td>
+                       <td><input type="submit" value="Modifier" onClick="return (check_field('nomAthleteModif')&&check_select('nomClubModif'))">
+                         <input type="reset" value="Annuler" onClick="deroule2(0,2); field_ok('nomAthleteModif'); field_ok('nomClubModif');field_ok('nomClubModif')"></td>
                    </tr>
                </table>
 
